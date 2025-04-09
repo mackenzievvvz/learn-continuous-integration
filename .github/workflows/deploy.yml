@@ -1,11 +1,6 @@
 name: Deploy Push
 
 on:
-  workflow_run:
-    workflows: ["CI Tutorial"]
-    types:
-      - completed
-
   push:
     branches:
       - develop
