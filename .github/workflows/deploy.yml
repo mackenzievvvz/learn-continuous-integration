@@ -1,0 +1,24 @@
+name: Deploy Push
+
+on:
+  workflow_run:
+    workflows: ["CI Tutorial"]
+    types:
+      - completed
+
+  push:
+    branches:
+      - develop
+
+jobs:
+  "load data":
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Delete data
+        run: npx ts-node remove_db.ts "mongodb://127.0.0.1:27017/my_library_db"
+
+      - name: Build data
+        run: npx ts-node insert_sample_data.ts "mongodb://127.0.0.1:27017/my_library_db"
