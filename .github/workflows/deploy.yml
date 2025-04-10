@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  "load data":
+  "load-data":
     runs-on: self-hosted
     steps:
       - name: Checkout Repository
